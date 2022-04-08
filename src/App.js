@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-function App() {
+import Header from './Components/Header';
+import Navigation from './Components/Navigation';
+import Main from './Main';
+import Pokemon from './Pokemon';
+import NotFound from './NotFound';
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-routes">
+      <Header />
+      <Navigation />
+      <div className="container">
+        <Switch>
+          <Route exact path="/">
+            <Main />
+          </Route>
+          <Route path='/search'>
+            <Pokemon />
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
+      </div>
     </div>
   );
 }
-
-export default App;
